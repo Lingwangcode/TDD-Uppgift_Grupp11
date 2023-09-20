@@ -86,4 +86,11 @@ class CarTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> car.setSpeed(invalidLevel));
         assertEquals("Must be between 0 and 180!", exception.getMessage());
     }
+    @Test
+    public void brake(){
+        car.brake();
+        assertEquals(car.getSpeed(), 0);
+        assertFalse(car.getGasOn());
+    }
+
 }

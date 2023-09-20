@@ -77,4 +77,8 @@ public class Car {
     public boolean getIsRunning(){
         return isRunning;
     }
+    public void brake(){
+        setGasOff();
+        setSpeed(0);
+    }
 }
