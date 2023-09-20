@@ -10,12 +10,14 @@ public class Car {
     private boolean brakeOn;
     private int speed;
     private boolean isRunning;
+    private Gear gear;
 
     public Car (){
         highBeam = new HighBeam();
         halfLights = new HalfLights();
         backLights = new BackLights();
         warningLights = new WarningLights();
+        gear = Gear.DRIVE;
     }
 
     public HighBeam getHighBeam() {
@@ -78,6 +80,18 @@ public class Car {
         this.warningLights = warningLights;
     }
 
+    public Gear getGear() {
+        return gear;
+    }
+
+    public void setGear(Gear gear) {
+        this.gear = gear;
+    }
+
+    public boolean getIsRunning(){
+        return isRunning;
+    }
+
     public void startEngine(){
         isRunning = true;
     }
@@ -87,12 +101,11 @@ public class Car {
         highBeam.putLightsOff();
         backLights.putLightsOff();
     }
-    public boolean getIsRunning(){
-        return isRunning;
-    }
     public void brake(){
         setBrakeOn();
         setGasOff();
         setSpeed(0);
     }
+
+
 }
