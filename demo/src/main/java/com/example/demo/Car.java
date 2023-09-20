@@ -4,6 +4,7 @@ public class Car {
     private HighBeam highBeam;
     private HalfLights halfLights;
     private BackLights backLights;
+    private boolean isRunning;
 
     public Car (){
         highBeam = new HighBeam();
@@ -29,5 +30,14 @@ public class Car {
     }
     public void setBackLights(BackLights backLights){
         this.backLights = backLights;
+    }
+    public void startEngine(){
+        isRunning = true;
+    }
+    public void stopEngine(){
+        isRunning = false;
+    }
+    public boolean getIsRunning(){
+        return isRunning;
     }
 }

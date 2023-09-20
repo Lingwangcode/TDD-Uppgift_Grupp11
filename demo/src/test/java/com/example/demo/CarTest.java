@@ -46,8 +46,14 @@ class CarTest {
         assertNotNull(car.getBackLights());
     }
 
-
-
-
+    @Test
+    public void isRunningFalse(){
+        assertFalse(car.getIsRunning());
+    }
+    @Test
+    public void isRunningTrue(){
+        car.startEngine();
+        assertTrue(car.getIsRunning());
+    }
 
 }
