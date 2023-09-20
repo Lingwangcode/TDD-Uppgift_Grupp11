@@ -5,6 +5,7 @@ public class Car {
     private HalfLights halfLights;
     private BackLights backLights;
     private WarningLights warningLights;
+    private BrakeLights brakeLights;
     private boolean gasOn;
 
     private boolean brakeOn;
@@ -17,6 +18,7 @@ public class Car {
         halfLights = new HalfLights();
         backLights = new BackLights();
         warningLights = new WarningLights();
+        brakeLights = new BrakeLights();
         gear = Gear.DRIVE;
     }
 
@@ -31,6 +33,9 @@ public class Car {
     }
     public WarningLights getWarningLights(){
         return warningLights;
+    }
+    public BrakeLights getBrakeLights(){
+        return brakeLights;
     }
 
     public int getSpeed() {
@@ -80,6 +85,10 @@ public class Car {
         this.warningLights = warningLights;
     }
 
+    public void setBrakeLights(BrakeLights brakeLights) {
+        this.brakeLights = brakeLights;
+    }
+
     public Gear getGear() {
         return gear;
     }
@@ -104,6 +113,7 @@ public class Car {
     public void brake(){
         setBrakeOn();
         setGasOff();
+        brakeLights.putLightsOn();
         setSpeed(0);
     }
 

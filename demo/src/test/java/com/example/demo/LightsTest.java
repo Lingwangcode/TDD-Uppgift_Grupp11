@@ -10,6 +10,7 @@ class LightsTest {
     HalfLights halfLights;
     BackLights backLights;
     WarningLights warningLights;
+    BrakeLights brakeLights;
 
     @BeforeEach
     void setUp(){
@@ -17,6 +18,7 @@ class LightsTest {
         halfLights = new HalfLights();
         backLights = new BackLights();
         warningLights = new WarningLights();
+        brakeLights = new BrakeLights();
     }
 
     @Test
@@ -49,12 +51,22 @@ class LightsTest {
     }
 
     @Test
-    public void warningLights(){
+    public void warningLightsOff(){
         assertFalse(warningLights.isLightsOn());
     }
     @Test
     public void warningLightsOn(){
         warningLights.putLightsOn();
         assertTrue(warningLights.isLightsOn());
+    }
+
+    @Test
+    public void brakeLightsOff(){
+        assertFalse(brakeLights.isLightsOn());
+    }
+    @Test
+    public void brakeLightsOn(){
+        brakeLights.putLightsOn();
+        assertTrue(brakeLights.isLightsOn());
     }
 }
