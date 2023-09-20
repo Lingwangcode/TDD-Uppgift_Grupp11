@@ -5,6 +5,8 @@ public class Car {
     private HalfLights halfLights;
     private BackLights backLights;
     private WarningLights warningLights;
+    private boolean gasOn;
+    private int accLevel;
     private boolean isRunning;
 
     public Car (){
@@ -26,6 +28,28 @@ public class Car {
     public WarningLights getWarningLights(){
         return warningLights;
     }
+
+    public int getAccLevel() {
+        return accLevel;
+    }
+    public boolean getGasOn(){
+        return gasOn;
+    }
+    public void setAccLevel(int level){
+        if(level >= 0 && level <= 100) {
+            accLevel = level;
+        } else {
+            throw new IllegalArgumentException("Must be between 0 and 100!");
+        }
+    }
+
+    public void setGasOn() {
+        gasOn=true;
+    }
+    public void setGasOff() {
+        gasOn=false;
+    }
+
     public void setHighBeam(HighBeam highBeam) {
         this.highBeam = highBeam;
     }

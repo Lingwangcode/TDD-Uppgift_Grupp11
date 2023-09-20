@@ -72,4 +72,18 @@ class CarTest {
     public void hasWarningLights(){
         assertNotNull(car.getWarningLights());
     }
+    @Test
+    public void gasOn50(){
+        car.setGasOn();
+        assertTrue(car.getGasOn());
+        car.setAccLevel(50);
+        assertEquals(50, car.getAccLevel());
+    }
+    @Test
+    public void gasOn101GivesException(){
+        Car car = new Car();
+        int invalidLevel = 101;
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> car.setAccLevel(invalidLevel));
+        assertEquals("Must be between 0 and 100!", exception.getMessage());
+    }
 }
