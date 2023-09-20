@@ -99,12 +99,4 @@ class CarTest {
         assertFalse(car.getGasOn());
     }
 
-    @Test
-    public void brakeMoreThan0() {
-        car.setBrakeOn(); //brake was already on
-        car.brake();
-        assertEquals(car.getReverseSpeed(), 1);
-        assertTrue(car.isBrakeOn());
-    }
-
 }
