@@ -9,12 +9,14 @@ class LightsTest {
     HighBeam highBeam;
     HalfLights halfLights;
     BackLights backLights;
+    WarningLights warningLights;
 
     @BeforeEach
     void setUp(){
         highBeam = new HighBeam();
         halfLights = new HalfLights();
         backLights = new BackLights();
+        warningLights = new WarningLights();
     }
 
     @Test
@@ -43,5 +45,15 @@ class LightsTest {
     public void backLightsOn(){
         backLights.putLightsOn();
         assertTrue(backLights.isLightsOn());
+    }
+
+    @Test
+    public void warningLights(){
+        assertFalse(warningLights.isLightsOn());
+    }
+    @Test
+    public void warningLightsOn(){
+        warningLights.putLightsOn();
+        assertTrue(warningLights.isLightsOn());
     }
 }

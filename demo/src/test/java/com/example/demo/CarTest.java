@@ -68,4 +68,8 @@ class CarTest {
         assertFalse(car.getHighBeam().isLightsOn());
         assertFalse(car.getBackLights().isLightsOn());
     }
+    @Test
+    public void hasWarningLights(){
+        assertNotNull(car.getWarningLights());
+    }
 }
