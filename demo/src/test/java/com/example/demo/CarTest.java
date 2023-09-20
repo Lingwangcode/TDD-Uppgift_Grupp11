@@ -32,7 +32,7 @@ class CarTest {
         assertFalse(car.getLights().isLightsOn());
     }*/
 
-    @Test
+   /* @Test
     public void hasHalfLights() {
         assertNotNull(car.getHalfLights());
     }
@@ -41,6 +41,12 @@ class CarTest {
     public void hasHighBeam() {
         assertNotNull(car.getHighBeam());
     }
+
+    */
+   @Test
+   public void hasLightsControl() {
+       assertNotNull(car.getLightingControl());
+   }
 
     @Test
     public void hasBackLights() {
@@ -68,12 +74,16 @@ class CarTest {
     public void stopEngineLightsOut() {
         //put on lights to put them out by engine
         car.getBackLights().putLightsOn();
-        car.getHalfLights().putLightsOn();
-        car.getHighBeam().putLightsOn();
+        //car.getHalfLights().putLightsOn();
+        //car.getHighBeam().putLightsOn();
+        car.getLightingControl().putHalfLightsOn();
+        car.getLightingControl().isLightsOn();
         car.stopEngine();
 
-        assertFalse(car.getHalfLights().isLightsOn());
-        assertFalse(car.getHighBeam().isLightsOn());
+        //assertFalse(car.getHalfLights().isLightsOn());
+        //assertFalse(car.getHighBeam().isLightsOn());
+        assertFalse(car.getLightingControl().isHalfLightsOn());
+        assertFalse(car.getLightingControl().isLightsOn());
         assertFalse(car.getBackLights().isLightsOn());
     }
 

@@ -1,8 +1,9 @@
 package com.example.demo;
 
 public class Car {
-    private HighBeam highBeam;
-    private HalfLights halfLights;
+    //private HighBeam highBeam;
+   // private HalfLights halfLights;
+    private LightingControl lightingControl;
     private BackLights backLights;
     private WarningLights warningLights;
     private BrakeLights brakeLights;
@@ -14,20 +15,28 @@ public class Car {
     private Gear gear;
 
     public Car (){
-        highBeam = new HighBeam();
-        halfLights = new HalfLights();
+        //highBeam = new HighBeam();
+        //halfLights = new HalfLights();
+        lightingControl = new LightingControl();
         backLights = new BackLights();
         warningLights = new WarningLights();
         brakeLights = new BrakeLights();
         gear = Gear.DRIVE;
     }
 
-    public HighBeam getHighBeam() {
+    /*public HighBeam getHighBeam() {
         return highBeam;
     }
     public HalfLights getHalfLights(){
         return halfLights;
     }
+
+     */
+
+    public LightingControl getLightingControl() {
+        return lightingControl;
+    }
+
     public BackLights getBackLights(){
         return backLights;
     }
@@ -70,13 +79,20 @@ public class Car {
     public void setBrakeOff() {
         this.brakeOn = false;
     }
-    public void setHighBeam(HighBeam highBeam) {
-        this.highBeam = highBeam;
+
+    public void setLightingControl(LightingControl lightingControl) {
+        this.lightingControl = lightingControl;
     }
 
-    public void setHalfLights(HalfLights halfLights){
-        this.halfLights = halfLights;
-    }
+    /* public void setHighBeam(HighBeam highBeam) {
+            this.highBeam = highBeam;
+        }
+
+        public void setHalfLights(HalfLights halfLights){
+            this.halfLights = halfLights;
+        }
+
+        */
     public void setBackLights(BackLights backLights){
         this.backLights = backLights;
     }
@@ -106,8 +122,10 @@ public class Car {
     }
     public void stopEngine(){
         isRunning = false;
-        halfLights.putLightsOff();
-        highBeam.putLightsOff();
+        lightingControl.putHalfLightsOff();
+        lightingControl.putLightsOff();
+        //halfLights.putLightsOff();
+        //highBeam.putLightsOff();
         backLights.putLightsOff();
     }
     public void brake(){
