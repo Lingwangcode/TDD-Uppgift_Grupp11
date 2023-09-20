@@ -24,4 +24,16 @@ class CarTest {
         assertNotNull(car);
     }
 
+    @Test
+    public void hasNoLights(){
+        assertNull(car.getLights());
+    }
+    @Test
+    public void hasLights(){
+        assertNotNull(car.getLights());
+    }
+
+
+
+
 }
