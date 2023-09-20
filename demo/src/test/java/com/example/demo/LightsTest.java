@@ -45,6 +45,7 @@ class LightsTest {
     public void backLightsOn(){
         backLights.putLightsOn();
         assertTrue(backLights.isLightsOn());
+
     }
 
     @Test

@@ -11,11 +11,11 @@ class CarTest {
 
     @BeforeEach
     void setUp() {
-         car = new Car();
+        car = new Car();
     }
 
     @Test
-    public void notNullTest (){
+    public void notNullTest() {
         assertNotNull(car);
     }
 
@@ -33,31 +33,33 @@ class CarTest {
     }*/
 
     @Test
-    public void hasHalfLights(){
+    public void hasHalfLights() {
         assertNotNull(car.getHalfLights());
     }
+
     @Test
-    public void hasHighBeam(){
+    public void hasHighBeam() {
         assertNotNull(car.getHighBeam());
     }
 
     @Test
-    public void hasBackLights(){
+    public void hasBackLights() {
         assertNotNull(car.getBackLights());
     }
 
     @Test
-    public void isRunningFalse(){
+    public void isRunningFalse() {
         assertFalse(car.getIsRunning());
     }
+
     @Test
-    public void isRunningTrue(){
+    public void isRunningTrue() {
         car.startEngine();
         assertTrue(car.getIsRunning());
     }
 
     @Test
-    public void stopEngineLightsOut(){
+    public void stopEngineLightsOut() {
         //put on lights to put them out by engine
         car.getBackLights().putLightsOn();
         car.getHalfLights().putLightsOn();
@@ -68,34 +70,41 @@ class CarTest {
         assertFalse(car.getHighBeam().isLightsOn());
         assertFalse(car.getBackLights().isLightsOn());
     }
+
     @Test
-    public void hasWarningLights(){
+    public void hasWarningLights() {
         assertNotNull(car.getWarningLights());
     }
+
     @Test
-    public void gasOn50(){
+    public void gasOn50() {
         car.setGasOn();
         assertTrue(car.getGasOn());
         car.setSpeed(50);
         assertEquals(50, car.getSpeed());
     }
+
     @Test
-    public void gasOn181GivesException(){
+    public void gasOn181GivesException() {
         Car car = new Car();
         int invalidLevel = 181;
         Exception exception = assertThrows(IllegalArgumentException.class, () -> car.setSpeed(invalidLevel));
         assertEquals("Must be between 0 and 180!", exception.getMessage());
     }
+
     @Test
-    public void brake(){
+    public void brake() {
         car.brake();
         assertEquals(car.getSpeed(), 0);
         assertFalse(car.getGasOn());
     }
 
     @Test
-    public void brakeMoreThan0(){
-
+    public void brakeMoreThan0() {
+        car.setBrakeOn(); //brake was already on
+        car.brake();
+        assertEquals(car.getReverseSpeed(), 1);
+        assertTrue(car.isBrakeOn());
     }
 
 }

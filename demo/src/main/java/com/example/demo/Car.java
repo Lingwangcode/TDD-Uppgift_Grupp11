@@ -6,7 +6,9 @@ public class Car {
     private BackLights backLights;
     private WarningLights warningLights;
     private boolean gasOn;
+    private boolean brakeOn;
     private int speed;
+    private int reverseSpeed;
     private boolean isRunning;
 
     public Car (){
@@ -65,6 +67,25 @@ public class Car {
         this.warningLights = warningLights;
     }
 
+    public boolean isBrakeOn() {
+        return brakeOn;
+    }
+
+    public void setBrakeOn() {
+        this.brakeOn = true;
+    }
+    public void setBrakeOff() {
+        this.brakeOn = false;
+    }
+
+    public int getReverseSpeed() {
+        return reverseSpeed;
+    }
+
+    public void setReverseSpeed(int reverseSpeed) {
+        this.reverseSpeed = reverseSpeed;
+    }
+
     public void startEngine(){
         isRunning = true;
     }
@@ -78,7 +99,12 @@ public class Car {
         return isRunning;
     }
     public void brake(){
-        setGasOff();
-        setSpeed(0);
+        if (!brakeOn) {
+            setGasOff();
+            setSpeed(0);
+            setBrakeOn();
+        }else {
+            setReverseSpeed(1);
+        }
     }
 }
