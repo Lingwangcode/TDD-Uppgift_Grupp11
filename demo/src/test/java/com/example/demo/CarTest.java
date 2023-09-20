@@ -41,6 +41,10 @@ class CarTest {
         assertNotNull(car.getHighBeam());
     }
 
+    @Test
+    public void hasBackLights(){
+        assertNotNull(car.getBackLights());
+    }
 
 
 

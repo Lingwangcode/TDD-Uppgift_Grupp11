@@ -8,11 +8,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class LightsTest {
     HighBeam highBeam;
     HalfLights halfLights;
+    BackLights backLights;
 
     @BeforeEach
     void setUp(){
         highBeam = new HighBeam();
         halfLights = new HalfLights();
+        backLights = new BackLights();
     }
 
     @Test
@@ -32,5 +34,14 @@ class LightsTest {
     public void highBeamOn(){
         highBeam.putLightsOn();
         assertTrue(highBeam.isLightsOn());
+    }
+    @Test
+    public void backLightsOff(){
+        assertFalse(backLights.isLightsOn());
+    }
+    @Test
+    public void backLightsOn(){
+        backLights.putLightsOn();
+        assertTrue(backLights.isLightsOn());
     }
 }
