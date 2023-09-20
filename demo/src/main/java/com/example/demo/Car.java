@@ -6,7 +6,7 @@ public class Car {
     private BackLights backLights;
     private WarningLights warningLights;
     private boolean gasOn;
-    private int accLevel;
+    private int speed;
     private boolean isRunning;
 
     public Car (){
@@ -29,17 +29,17 @@ public class Car {
         return warningLights;
     }
 
-    public int getAccLevel() {
-        return accLevel;
+    public int getSpeed() {
+        return speed;
     }
     public boolean getGasOn(){
         return gasOn;
     }
-    public void setAccLevel(int level){
-        if(level >= 0 && level <= 100) {
-            accLevel = level;
+    public void setSpeed(int speed){
+        if(speed >= 0 && speed <= 180) {
+            this.speed = speed;
         } else {
-            throw new IllegalArgumentException("Must be between 0 and 100!");
+            throw new IllegalArgumentException("Must be between 0 and 180!");
         }
     }
 
