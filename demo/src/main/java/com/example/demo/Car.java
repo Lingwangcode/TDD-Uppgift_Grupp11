@@ -36,6 +36,9 @@ public class Car {
     }
     public void stopEngine(){
         isRunning = false;
+        halfLights.putLightsOff();
+        highBeam.putLightsOff();
+        backLights.putLightsOff();
     }
     public boolean getIsRunning(){
         return isRunning;

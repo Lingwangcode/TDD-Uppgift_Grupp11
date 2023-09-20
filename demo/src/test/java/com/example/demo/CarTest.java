@@ -56,4 +56,16 @@ class CarTest {
         assertTrue(car.getIsRunning());
     }
 
+    @Test
+    public void stopEngineLightsOut(){
+        //put on lights to put them out by engine
+        car.getBackLights().putLightsOn();
+        car.getHalfLights().putLightsOn();
+        car.getHighBeam().putLightsOn();
+        car.stopEngine();
+
+        assertFalse(car.getHalfLights().isLightsOn());
+        assertFalse(car.getHighBeam().isLightsOn());
+        assertFalse(car.getBackLights().isLightsOn());
+    }
 }
