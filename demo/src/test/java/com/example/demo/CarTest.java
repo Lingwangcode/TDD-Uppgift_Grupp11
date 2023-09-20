@@ -15,23 +15,28 @@ class CarTest {
     }
 
     @Test
-    public void nullTest (){
-        assertNull(car);
-    }
-
-    @Test
     public void notNullTest (){
         assertNotNull(car);
     }
 
     @Test
-    public void hasNoLights(){
-        assertNull(car.getLights());
-    }
-    @Test
     public void hasLights(){
         assertNotNull(car.getLights());
     }
+    @Test
+    public void turnOnLights(){
+        car.lightSwitch();
+        assertTrue(car.getLights().isLightsOn());
+    }
+    @Test
+    public void turnOffLights(){
+        car.lightSwitch();
+        car.lightSwitch();
+        assertFalse(car.getLights().isLightsOn());
+    }
+
+
+
 
 
 

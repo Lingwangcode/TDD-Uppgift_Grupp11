@@ -14,7 +14,12 @@ class LightsTest {
     }
 
     @Test
+    public void lightsOff(){
+        assertFalse(lights.isLightsOn());
+    }
+    @Test
     public void lightsOn(){
-        assertTrue(lights.getLightsOn());
+        lights.putLightsOn();
+        assertTrue(lights.isLightsOn());
     }
 }
