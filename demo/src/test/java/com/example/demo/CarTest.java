@@ -93,4 +93,9 @@ class CarTest {
         assertFalse(car.getGasOn());
     }
 
+    @Test
+    public void brakeMoreThan0(){
+
+    }
+
 }
