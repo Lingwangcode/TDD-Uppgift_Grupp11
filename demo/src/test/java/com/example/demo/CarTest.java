@@ -19,10 +19,7 @@ class CarTest {
         assertNotNull(car);
     }
 
-    @Test
-    public void hasLights(){
-        assertNotNull(car.getLights());
-    }
+/*
     @Test
     public void turnOnLights(){
         car.lightSwitch();
@@ -33,8 +30,16 @@ class CarTest {
         car.lightSwitch();
         car.lightSwitch();
         assertFalse(car.getLights().isLightsOn());
-    }
+    }*/
 
+    @Test
+    public void hasHalfLights(){
+        assertNotNull(car.getHalfLights());
+    }
+    @Test
+    public void hasHighBeam(){
+        assertNotNull(car.getHighBeam());
+    }
 
 
 

@@ -6,20 +6,31 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LightsTest {
-    Lights lights;
+    HighBeam highBeam;
+    HalfLights halfLights;
 
     @BeforeEach
     void setUp(){
-        lights=new Lights();
+        highBeam = new HighBeam();
+        halfLights = new HalfLights();
     }
 
     @Test
-    public void lightsOff(){
-        assertFalse(lights.isLightsOn());
+    public void halfLightsOff(){
+        assertFalse(halfLights.isLightsOn());
     }
     @Test
-    public void lightsOn(){
-        lights.putLightsOn();
-        assertTrue(lights.isLightsOn());
+    public void halfLightsOn(){
+        halfLights.putLightsOn();
+        assertTrue(halfLights.isLightsOn());
+    }
+    @Test
+    public void highBeamOff(){
+        assertFalse(highBeam.isLightsOn());
+    }
+    @Test
+    public void highBeamOn(){
+        highBeam.putLightsOn();
+        assertTrue(highBeam.isLightsOn());
     }
 }

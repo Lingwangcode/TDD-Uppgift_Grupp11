@@ -1,22 +1,27 @@
 package com.example.demo;
 
 public class Car {
-    private Lights lights;
+    private Lights highBeam1;
+    private HighBeam highBeam;
+    private HalfLights halfLights;
 
     public Car (){
-        lights = new Lights();
+        highBeam = new HighBeam();
+        halfLights = new HalfLights();
     }
 
-    public Lights getLights() {
-        return lights;
+    public HighBeam getHighBeam() {
+        return highBeam;
     }
-    public void lightSwitch(){
-        if(!lights.isLightsOn()){
-            lights.putLightsOn();
-        } else lights.putLightsOff();
+    public HalfLights getHalfLights(){
+        return halfLights;
+    }
+    public void setHighBeam(HighBeam highBeam) {
+        this.highBeam = highBeam;
     }
 
-    public void setLights(Lights lights) {
-        this.lights = lights;
+    public void setHalfLights(HalfLights halfLights){
+        this.halfLights = halfLights;
     }
+
 }
