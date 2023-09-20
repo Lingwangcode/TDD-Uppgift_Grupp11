@@ -4,6 +4,7 @@ public enum Gear {
     DRIVE,
     REVERSE;
 
+    /* Not needed when using hamcrest
     public static boolean contains(Gear gear) {
         for (Gear enumValue : values()) {
             if (enumValue == gear) {
@@ -12,4 +13,6 @@ public enum Gear {
         }
         return false;
     }
+
+     */
 }

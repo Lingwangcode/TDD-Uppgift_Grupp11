@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 
 class CarTest {
 
@@ -52,6 +55,12 @@ class CarTest {
         assertNotNull(car.getGear());
     }
 
+    @Test
+    public void gearSetterGetter() {
+        assertEquals(car.getGear(), Gear.DRIVE);
+        car.setGear(Gear.REVERSE);
+        assertEquals(car.getGear(), Gear.REVERSE);
+    }
 
     @Test
     public void isRunningFalse() {
@@ -75,6 +84,20 @@ class CarTest {
         assertFalse(car.getHalfLights().isLightsOn());
         assertFalse(car.getHighBeam().isLightsOn());
         assertFalse(car.getBackLights().isLightsOn());
+    }
+
+    @Test
+    public void stopEngineLightsOut2() { //using hamcrest Assertions instead of JUnit
+        //put on lights to put them out by engine
+        car.getBackLights().putLightsOn();
+        car.getHalfLights().putLightsOn();
+        car.getHighBeam().putLightsOn();
+        car.stopEngine();
+
+        assertThat(car.getBackLights(), is(false));
+        assertThat(car.getHalfLights(), is(false));
+        assertThat(car.getHighBeam(), is(false));
+
     }
 
     @Test
