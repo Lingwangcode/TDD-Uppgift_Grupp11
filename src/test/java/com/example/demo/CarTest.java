@@ -3,6 +3,8 @@ package com.example.demo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
@@ -130,9 +132,10 @@ class CarTest {
         car.getHighBeam().putLightsOn();
         car.stopEngine();
 
-        assertFalse(car.getHalfLights().isLightsOn());
-        assertFalse(car.getHighBeam().isLightsOn());
-        assertFalse(car.getBackLights().isLightsOn());
+        //asserts w hamcrest
+        assertThat(car.getBackLights().isLightsOn(), is(false));
+        assertThat(car.getHalfLights().isLightsOn(), is(false));
+        assertThat(car.getHighBeam().isLightsOn(), is(false));
     }
 
     @Test
@@ -140,13 +143,14 @@ class CarTest {
         assertNotNull(car.getWarningLights());
     }
 
-  /*  @Test
+    @Test
     public void gasOn50() {
+        car.getBattery().setBatteryLevel(50);
         car.setGasOn();
         assertTrue(car.getGasOn());
         car.setSpeed(50);
         assertEquals(50, car.getSpeed());
-    }*/
+    }
 
     @Test
     public void gasOn181GivesException() {
