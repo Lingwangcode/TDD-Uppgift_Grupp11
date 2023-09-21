@@ -51,7 +51,10 @@ class CarTest {
     public void hasGears() {
         assertNotNull(car.getGear());
     }
-
+    @Test
+    public void hasBattery() {
+        assertNotNull(car.getBattery());
+    }
 
     @Test
     public void isRunningFalse() {

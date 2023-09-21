@@ -12,6 +12,7 @@ public class Car {
     private int speed;
     private boolean isRunning;
     private Gear gear;
+    private Battery battery;
 
     public Car (){
         highBeam = new HighBeam();
@@ -20,6 +21,7 @@ public class Car {
         warningLights = new WarningLights();
         brakeLights = new BrakeLights();
         gear = Gear.DRIVE;
+        battery=new Battery();
     }
 
     public HighBeam getHighBeam() {
@@ -87,6 +89,13 @@ public class Car {
         this.brakeLights = brakeLights;
     }
 
+    public Battery getBattery() {
+        return battery;
+    }
+
+    public void setBattery(Battery battery) {
+        this.battery = battery;
+    }
 
     public Gear getGear() {
         return gear;
