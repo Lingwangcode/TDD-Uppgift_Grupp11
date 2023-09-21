@@ -1,9 +1,9 @@
 HELP.md
-#demo/.gradle
-#build/
-#!../gradle/wrapper/gradle-wrapper.jar #borttagen av Maria
-#!**/src/main/**/build/
-#!**/src/test/**/build/
+demo/.gradle
+build/
+!../gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 ### STS ###
 .apt_generated
@@ -37,4 +37,4 @@ out/
 .vscode/
 
 # Project exclude paths
-#/.gradle/ #borttagen av Maria
+/.gradle/
