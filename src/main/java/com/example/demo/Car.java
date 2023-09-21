@@ -15,6 +15,7 @@ public class Car {
     private boolean isRunning;
     private Gear gear;
     private Battery battery;
+    private boolean connect;
 
     public Car() {
         highBeam = new HighBeam();
@@ -49,6 +50,15 @@ public class Car {
     public int getSpeed() {
         return speed;
     }
+
+    public boolean isConnect() {
+        return connect;
+    }
+
+    public void setConnect(boolean connect) {
+        this.connect = connect;
+    }
+
     public void setSpeed(int speed) {
         this.speed = speed;
     }
