@@ -173,8 +173,16 @@ class CarTest {
     @Test
     public void charger(){
         carHandler.getCar().getBattery().setBatteryLevel(0);
+        carHandler.getCar().setConnect(true);
         carHandler.charger(50);
         assertEquals(carHandler.getCar().getBattery().getBatteryLevel(),50);
+    }
+    @Test
+    public void chargeWhenNotConnected(){
+        carHandler.getCar().getBattery().setBatteryLevel(0);
+        carHandler.getCar().setConnect(false);
+        Exception exception = assertThrows(RuntimeException.class, () -> carHandler.charger(1));
+        assertEquals("The car is not connected", exception.getMessage());
     }
     @Test
     public void chargeFullBatteryThrowsExceptionTest(){
