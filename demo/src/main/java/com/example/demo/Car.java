@@ -62,8 +62,17 @@ public class Car {
         }
     }
 
+    public void changeSpeed(int change) {
+        if (battery.getBatteryLevel() > 0) {
+            setSpeed(getSpeed() + change);
+        }
+    }
+
     public void setGasOn() {
-        gasOn = true;
+        if (battery.getBatteryLevel() > 0) {
+            gasOn = true;
+        }
+
     }
 
     public void setGasOff() {
@@ -139,11 +148,12 @@ public class Car {
             throw new IllegalArgumentException("Car can't run on empty battery");
         }
     }
-    public void shine (){
+
+    public void shine() {
         List<Lights> lights = List.of(halfLights, highBeam, backLights, brakeLights, warningLights);
-        for (Lights l:lights) {
-            if (l.isLightsOn()){
-                battery.setBatteryLevel(battery.getBatteryLevel()-1);
+        for (Lights l : lights) {
+            if (l.isLightsOn()) {
+                battery.setBatteryLevel(battery.getBatteryLevel() - 1);
             }
         }
 

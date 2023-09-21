@@ -78,6 +78,17 @@ class CarTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> car.drive(15));
         assertEquals("Car can't run on empty battery", exception.getMessage());
     }
+
+    @Test
+    public void speedCantIncreaseOnEmptyBattery(){
+        car.setSpeed(100);
+        car.changeSpeed(10);
+
+        assertEquals(car.getSpeed(),100);
+        assertNotEquals(car.getSpeed(),110);
+
+    }
+
     @Test
     public void isRunningFalse() {
         assertFalse(car.getIsRunning());
