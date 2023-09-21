@@ -18,5 +18,6 @@ jobs:
           cache: 'gradle'
       
       - name: Build and Test with Gradle
+        working-directory: ./demo
         run: |
           gradlew clean build test
