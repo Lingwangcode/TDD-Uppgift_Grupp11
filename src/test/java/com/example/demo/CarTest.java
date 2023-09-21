@@ -187,6 +187,7 @@ class CarTest {
     @Test
     public void chargeFullBatteryThrowsExceptionTest(){
         carHandler.getCar().getBattery().setBatteryLevel(100);
+        carHandler.getCar().setConnect(true);
         Exception exception = assertThrows(RuntimeException.class, () -> carHandler.charger(1));
         assertEquals("Battery is already charged", exception.getMessage());
     }

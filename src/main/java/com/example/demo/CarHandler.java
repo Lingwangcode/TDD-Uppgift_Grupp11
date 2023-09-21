@@ -87,10 +87,14 @@ public class CarHandler {
     }
 
     public void charger(int amount){
-        if(car.getBattery().getBatteryLevel() < 100 && car.isConnect()==true){
-            car.getBattery().chargeBattery(amount);
-         }else if(car.getBattery().getBatteryLevel() == 100){
-            throw new RuntimeException("Battery is already charged");
+        if(car.isConnect()==true){
+
+            //System.out.println();
+            if(car.getBattery().getBatteryLevel() < 100){
+                car.getBattery().chargeBattery(amount);
+            }else if(car.getBattery().getBatteryLevel() == 100){
+                throw new RuntimeException("Battery is already charged");
+            }
         }else {
             throw new RuntimeException("The car is not connected");
         }
