@@ -25,7 +25,7 @@ class BatteryTest {
         assertEquals (battery.getBatteryLevel(), 75);
     }
     @Test
-    public void setBatteryLevelTestGoodInvalid() {
+    public void setBatteryLevelTestInvalid() {
         battery.setBatteryLevel(-75);
         assertEquals (battery.getBatteryLevel(), 0);
         battery.setBatteryLevel(175);
