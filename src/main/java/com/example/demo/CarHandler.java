@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CarHandler {
     private final Car car;
-    private List<Lights> lights;
+    private final List<Lights> lights;
 
     public CarHandler(Car car) {
         this.car = car;
