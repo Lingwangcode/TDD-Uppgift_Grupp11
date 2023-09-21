@@ -27,7 +27,6 @@ public class CarHandler {
         if (car.getBattery().getBatteryLevel() > 0) {
             car.setGasOn();
         }
-
     }
 
     public void startEngine() {
