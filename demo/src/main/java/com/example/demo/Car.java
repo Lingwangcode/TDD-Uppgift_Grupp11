@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.List;
+
 public class Car {
     private HighBeam highBeam;
     private HalfLights halfLights;
@@ -14,39 +16,46 @@ public class Car {
     private Gear gear;
     private Battery battery;
 
-    public Car (){
+    public Car() {
         highBeam = new HighBeam();
         halfLights = new HalfLights();
         backLights = new BackLights();
         warningLights = new WarningLights();
         brakeLights = new BrakeLights();
         gear = Gear.DRIVE;
-        battery=new Battery();
+        battery = new Battery();
     }
 
     public HighBeam getHighBeam() {
         return highBeam;
     }
-    public HalfLights getHalfLights(){
+
+    public HalfLights getHalfLights() {
         return halfLights;
     }
-    public BackLights getBackLights(){
+
+    public BackLights getBackLights() {
         return backLights;
     }
-    public WarningLights getWarningLights(){
+
+    public WarningLights getWarningLights() {
         return warningLights;
     }
-    public BrakeLights getBrakeLights(){
+
+    public BrakeLights getBrakeLights() {
         return brakeLights;
     }
+
     public int getSpeed() {
         return speed;
     }
-    public boolean getGasOn(){
+
+    public boolean getGasOn() {
         return gasOn;
     }
-    public void setSpeed(int speed){
-        if(speed >= 0 && speed <= 180) {
+
+    public void setSpeed(int speed) {
+        if (speed >= 0 && speed <= 180) {
             this.speed = speed;
         } else {
             throw new IllegalArgumentException("Must be between 0 and 180!");
@@ -54,10 +63,11 @@ public class Car {
     }
 
     public void setGasOn() {
-        gasOn=true;
+        gasOn = true;
     }
+
     public void setGasOff() {
-        gasOn=false;
+        gasOn = false;
     }
 
     public boolean isBrakeOn() {
@@ -71,20 +81,23 @@ public class Car {
     public void setBrakeOff() {
         this.brakeOn = false;
     }
+
     public void setHighBeam(HighBeam highBeam) {
         this.highBeam = highBeam;
     }
 
-    public void setHalfLights(HalfLights halfLights){
+    public void setHalfLights(HalfLights halfLights) {
         this.halfLights = halfLights;
     }
-    public void setBackLights(BackLights backLights){
+
+    public void setBackLights(BackLights backLights) {
         this.backLights = backLights;
     }
 
     public void setWarningLights(WarningLights warningLights) {
         this.warningLights = warningLights;
     }
+
     public void setBrakeLights(BrakeLights brakeLights) {
         this.brakeLights = brakeLights;
     }
@@ -105,31 +118,45 @@ public class Car {
         this.gear = gear;
     }
 
-    public boolean getIsRunning(){
+    public boolean getIsRunning() {
         return isRunning;
     }
 
-    public void startEngine(){
+    public void startEngine() {
         isRunning = true;
+        halfLights.putLightsOn();
+
     }
 
-    public void drive (int distance){
+    public void drive(int distance) {
         if (!isRunning) {
             startEngine();
         }
-        if (battery.getBatteryLevel()>0) {
+        if (battery.getBatteryLevel() > 0) {
             battery.setBatteryLevel(battery.getBatteryLevel() - distance);
-        }else {
+            shine();
+        } else {
             throw new IllegalArgumentException("Car can't run on empty battery");
         }
     }
-    public void stopEngine(){
+    public void shine (){
+        List<Lights> lights = List.of(halfLights, highBeam, backLights, brakeLights, warningLights);
+        for (Lights l:lights) {
+            if (l.isLightsOn()){
+                battery.setBatteryLevel(battery.getBatteryLevel()-1);
+            }
+        }
+
+    }
+
+    public void stopEngine() {
         isRunning = false;
         halfLights.putLightsOff();
         highBeam.putLightsOff();
         backLights.putLightsOff();
     }
-    public void brake(){
+
+    public void brake() {
         setBrakeOn();
         setGasOff();
         setSpeed(0);
