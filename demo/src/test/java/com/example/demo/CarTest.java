@@ -103,6 +103,7 @@ class CarTest {
         car.brake();
         assertEquals(car.getSpeed(), 0);
         assertFalse(car.getGasOn());
+        assertTrue(car.getBrakeLights().isLightsOn());
     }
 
 }
