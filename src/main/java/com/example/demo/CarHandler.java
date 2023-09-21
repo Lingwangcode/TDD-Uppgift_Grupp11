@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CarHandler {
     private final Car car;
-    private List<Lights> lights;
+    private final List<Lights> lights;
 
     public CarHandler(Car car) {
         this.car = car;
@@ -41,24 +41,33 @@ public class CarHandler {
         if (!car.getIsRunning()) {
             startEngine();
         }
-        if (car.getBattery().getBatteryLevel() > 0) {
+        if (car.getBattery().getBatteryLevel() >= distance) {
             car.getBattery().setBatteryLevel(car.getBattery().getBatteryLevel() - distance);
             shine();
         } else {
-            stopEngine();
+            car.getWarningLights().putLightsOn();
+            deadBattery();
             throw new IllegalArgumentException("Car can't run on empty battery");
         }
     }
+
     public void deadBattery() {
+        car.getBattery().setEmergencyActivated(true);
         for (Lights l : lights) {
-            l.putLightsOff();
+            if (!l.equals(car.getWarningLights())) {
+                l.putLightsOff();
+            }
         }
     }
 
     public void shine() {
         for (Lights l : lights) {
             if (l.isLightsOn()) {
-                car.getBattery().setBatteryLevel(car.getBattery().getBatteryLevel() - 1);
+                if (l.equals(car.getWarningLights()) && car.getBattery().isEmergencyActivated()) {
+                    car.getBattery().setEmergencyBatteryLevel(car.getBattery().getEmergencyBatteryLevel() - 1);
+                } else {
+                    car.getBattery().setBatteryLevel(car.getBattery().getBatteryLevel() - 1);
+                }
             }
         }
     }
@@ -77,7 +86,7 @@ public class CarHandler {
         car.getBrakeLights().putLightsOn();
     }
 
-    public Car getCar(){
+    public Car getCar() {
         return car;
     }
 }

@@ -7,9 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BatteryTest {
     Battery battery;
+
     @BeforeEach
-    void setup(){
-        battery=new Battery();
+    void setup() {
+        battery = new Battery();
     }
 
     @Test
@@ -22,13 +23,25 @@ class BatteryTest {
     @Test
     public void setBatteryLevelTestValid() {
         battery.setBatteryLevel(75);
-        assertEquals (battery.getBatteryLevel(), 75);
+        assertEquals(battery.getBatteryLevel(), 75);
     }
+
     @Test
     public void setBatteryLevelTestInvalid() {
         battery.setBatteryLevel(-75);
-        assertEquals (battery.getBatteryLevel(), 0);
+        assertEquals(battery.getBatteryLevel(), 0);
         battery.setBatteryLevel(175);
-        assertEquals (battery.getBatteryLevel(), 100);
+        assertEquals(battery.getBatteryLevel(), 100);
+    }
+
+    @Test
+    public void emergencyBatteryTest() {
+
+        battery.setBatteryLevel(0);
+
+        assertEquals(battery.getBatteryLevel(), 0);
+        assertTrue(battery.isEmergencyActivated());
+        assertEquals(battery.getEmergencyBatteryLevel(), 3);
+
     }
 }

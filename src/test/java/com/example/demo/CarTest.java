@@ -55,25 +55,27 @@ class CarTest {
     public void hasGears() {
         assertNotNull(carHandler.getCar().getGear());
     }
+
     @Test
     public void hasBattery() {
         assertNotNull(carHandler.getCar().getBattery());
     }
 
     @Test
-    public void drivingUsesUpBattery(){
+    public void drivingUsesUpBattery() {
         carHandler.getCar().getBattery().setBatteryLevel(100);
         int originalBatteryLevel = carHandler.getCar().getBattery().getBatteryLevel();
         carHandler.drive(15);
-        assertTrue (originalBatteryLevel >= carHandler.getCar().getBattery().getBatteryLevel());
+        assertTrue(originalBatteryLevel >= carHandler.getCar().getBattery().getBatteryLevel());
     }
+
     @Test
-    public void lightsUsesUpBattery(){      //obs!! bara för halvljus än så länge!! ändra om vi refaktoriserar så logiken kommer ut ur Car
+    public void lightsUsesUpBattery() {      //obs!! bara för halvljus än så länge!! ändra om vi refaktoriserar så logiken kommer ut ur Car
         carHandler.getCar().getBattery().setBatteryLevel(100);
         int originalBatteryLevel = carHandler.getCar().getBattery().getBatteryLevel();
         carHandler.getCar().getHalfLights().putLightsOn();
         carHandler.shine();
-        assertTrue (originalBatteryLevel > carHandler.getCar().getBattery().getBatteryLevel());
+        assertTrue(originalBatteryLevel > carHandler.getCar().getBattery().getBatteryLevel());
     }
 
 
@@ -84,35 +86,35 @@ class CarTest {
     }
 
     @Test
-    public void speedCantIncreaseOnEmptyBattery(){
+    public void speedCantIncreaseOnEmptyBattery() {
         carHandler.getCar().setSpeed(100);
         carHandler.changeSpeed(10);
 
-        assertEquals(carHandler.getCar().getSpeed(),100);
-        assertNotEquals(carHandler.getCar().getSpeed(),110);
+        assertEquals(carHandler.getCar().getSpeed(), 100);
+        assertNotEquals(carHandler.getCar().getSpeed(), 110);
     }
 
-  /*  @Test
-    public void lightsOutOnEmptyBattery(){
+    @Test
+    public void lightsOutOnEmptyBattery() {
         //put on lights to put them out by engine
         car.getBattery().setBatteryLevel(50);
         car.getBackLights().putLightsOn();
         car.getHalfLights().putLightsOn();
         car.getHighBeam().putLightsOn();
         car.getBrakeLights().putLightsOn();
-        car.getWarningLights().putLightsOn();
-        car.getBattery().setBatteryLevel(0);
 
-        //måste anropa rätt metod för att faktiskt få lamporna att släckas
-        // (typ som stopEngine eller deadBattery)
-        // avvakta till vi brutit ut logiken
 
-        assertFalse(car.getHalfLights().isLightsOn());
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> carHandler.drive(55));
+        assertEquals("Car can't run on empty battery", exception.getMessage());
+
+
         assertFalse(car.getHighBeam().isLightsOn());
+        assertFalse(car.getHalfLights().isLightsOn());
         assertFalse(car.getBackLights().isLightsOn());
         assertFalse(car.getBrakeLights().isLightsOn());
-        assertFalse(car.getWarningLights().isLightsOn());
-    }*/
+
+        assertTrue(car.getWarningLights().isLightsOn());
+    }
 
     @Test
     public void isRunningFalse() {
