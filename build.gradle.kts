@@ -27,12 +27,10 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation ("org.junit.jupiter:junit-jupiter-api:5.8.1")
-	testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+//	testImplementation ("org.junit.jupiter:junit-jupiter-api:5.8.1")
+//	testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+	testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
 	testImplementation("org.hamcrest:hamcrest:2.2") //dependency for hamcrest tests
-}
-
-tasks.withType<Test> {
-	useJUnitPlatform()
 }
