@@ -9,7 +9,6 @@ public class Car {
     private WarningLights warningLights;
     private BrakeLights brakeLights;
     private boolean gasOn;
-
     private boolean brakeOn;
     private int speed;
     private boolean isRunning;
