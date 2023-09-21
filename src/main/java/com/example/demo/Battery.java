@@ -36,4 +36,12 @@ public class Battery {
         setEmergencyBatteryLevel(3);
         this.emergencyActivated = emergencyActivated;
     }
+
+    public void charge(int amount){
+        if(batteryLevel < 100){
+            setBatteryLevel(batteryLevel + amount);
+        }else {
+            throw new RuntimeException("Battery is already charged");
+        }
+    }
 }

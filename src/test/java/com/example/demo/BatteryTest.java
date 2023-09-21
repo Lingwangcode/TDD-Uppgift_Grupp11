@@ -44,4 +44,16 @@ class BatteryTest {
         assertEquals(battery.getEmergencyBatteryLevel(), 3);
 
     }
+    @Test
+    public void chargeBatteryTest(){
+        battery.setBatteryLevel(0);
+        battery.charge(20);
+        assertEquals(battery.getBatteryLevel(), 20);
+    }
+    @Test
+    public void chargeFullBatteryTest(){
+        battery.setBatteryLevel(100);
+        Exception exception = assertThrows(RuntimeException.class, () -> battery.charge(20));
+        assertEquals("Battery is already charged", exception.getMessage());
+    }
 }
