@@ -149,7 +149,7 @@ class CarTest {
         carHandler.getCar().getBattery().setBatteryLevel(50);
         carHandler.getCar().setGasOn();
         assertTrue(carHandler.getCar().getGasOn());
-        carHandler.getCar().setSpeed(50);
+        carHandler.setSpeed(50);
         assertEquals(50, carHandler.getCar().getSpeed());
     }
 
