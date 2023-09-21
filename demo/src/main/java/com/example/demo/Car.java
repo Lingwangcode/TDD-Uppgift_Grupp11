@@ -112,6 +112,17 @@ public class Car {
     public void startEngine(){
         isRunning = true;
     }
+
+    public void drive (int distance){
+        if (!isRunning) {
+            startEngine();
+        }
+        if (battery.getBatteryLevel()>0) {
+            battery.setBatteryLevel(battery.getBatteryLevel() - distance);
+        }else {
+            throw new IllegalArgumentException("Car can't run on empty battery");
+        }
+    }
     public void stopEngine(){
         isRunning = false;
         halfLights.putLightsOff();

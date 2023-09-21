@@ -57,6 +57,18 @@ class CarTest {
     }
 
     @Test
+    public void drivingUsesUpBattery(){
+        car.getBattery().setBatteryLevel(100);
+        int originalBatteryLevel=car.getBattery().getBatteryLevel();
+        car.drive(15);
+        assertTrue (originalBatteryLevel >= car.getBattery().getBatteryLevel());
+    }
+    @Test
+    public void driveOnEmptyBatteryGivesException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> car.drive(15));
+        assertEquals("Car can't run on empty battery", exception.getMessage());
+    }
+    @Test
     public void isRunningFalse() {
         assertFalse(car.getIsRunning());
     }
