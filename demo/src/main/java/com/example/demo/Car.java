@@ -68,6 +68,8 @@ public class Car {
         }
     }
 
+
+
     public void setGasOn() {
         if (battery.getBatteryLevel() > 0) {
             gasOn = true;
@@ -145,10 +147,17 @@ public class Car {
             battery.setBatteryLevel(battery.getBatteryLevel() - distance);
             shine();
         } else {
+            stopEngine();
             throw new IllegalArgumentException("Car can't run on empty battery");
         }
     }
+    public void deadBattery() {
+        List<Lights> lights = List.of(halfLights, highBeam, backLights, brakeLights, warningLights);
+        for (Lights l : lights) {
+            l.putLightsOff();
+        }
 
+    }
     public void shine() {
         List<Lights> lights = List.of(halfLights, highBeam, backLights, brakeLights, warningLights);
         for (Lights l : lights) {

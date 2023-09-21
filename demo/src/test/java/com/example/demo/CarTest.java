@@ -90,6 +90,28 @@ class CarTest {
     }
 
     @Test
+    public void lightsOutOnEmptyBattery(){
+        //put on lights to put them out by engine
+        car.getBattery().setBatteryLevel(50);
+        car.getBackLights().putLightsOn();
+        car.getHalfLights().putLightsOn();
+        car.getHighBeam().putLightsOn();
+        car.getBrakeLights().putLightsOn();
+        car.getWarningLights().putLightsOn();
+        car.getBattery().setBatteryLevel(0);
+
+        //måste anropa rätt metod för att faktiskt få lamporna att släckas
+        // (typ som stopEngine eller deadBattery)
+        // avvakta till vi brutit ut logiken
+
+        assertFalse(car.getHalfLights().isLightsOn());
+        assertFalse(car.getHighBeam().isLightsOn());
+        assertFalse(car.getBackLights().isLightsOn());
+        assertFalse(car.getBrakeLights().isLightsOn());
+        assertFalse(car.getWarningLights().isLightsOn());
+    }
+
+    @Test
     public void isRunningFalse() {
         assertFalse(car.getIsRunning());
     }
