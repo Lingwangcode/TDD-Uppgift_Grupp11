@@ -86,6 +86,14 @@ public class CarHandler {
         car.getBrakeLights().putLightsOn();
     }
 
+    public void charger(int amount){
+        if(car.getBattery().getBatteryLevel() < 100){
+            car.getBattery().chargeBattery(amount);
+         }else {
+            throw new RuntimeException("Battery is already charged");
+        }
+    }
+
     public Car getCar() {
         return car;
     }

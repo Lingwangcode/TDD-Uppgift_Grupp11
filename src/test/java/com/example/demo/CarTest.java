@@ -170,5 +170,17 @@ class CarTest {
         assertFalse(carHandler.getCar().getGasOn());
         assertTrue(carHandler.getCar().getBrakeLights().isLightsOn());
     }
+    @Test
+    public void charger(){
+        carHandler.getCar().getBattery().setBatteryLevel(0);
+        carHandler.charger(50);
+        assertEquals(carHandler.getCar().getBattery().getBatteryLevel(),50);
+    }
+    @Test
+    public void chargeFullBatteryTest(){
+        carHandler.getCar().getBattery().setBatteryLevel(100);
+        Exception exception = assertThrows(RuntimeException.class, () -> carHandler.charger(1));
+        assertEquals("Battery is already charged", exception.getMessage());
+    }
 
 }
