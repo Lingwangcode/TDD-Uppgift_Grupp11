@@ -4,9 +4,12 @@ import java.util.List;
 
 public class CarHandler {
     private final Car car;
+    private List<Lights> lights;
 
     public CarHandler(Car car) {
         this.car = car;
+        this.lights = List.of(car.getHalfLights(), car.getHighBeam(),
+                car.getBackLights(), car.getBrakeLights(), car.getWarningLights());
     }
 
     public void setSpeed(int speed) {
@@ -47,16 +50,12 @@ public class CarHandler {
         }
     }
     public void deadBattery() {
-        List<Lights> lights = List.of(car.getHalfLights(), car.getHighBeam(),
-                car.getBackLights(), car.getBrakeLights(), car.getWarningLights());
         for (Lights l : lights) {
             l.putLightsOff();
         }
     }
 
     public void shine() {
-        List<Lights> lights = List.of(car.getHalfLights(), car.getHighBeam(),
-                car.getBackLights(), car.getBrakeLights(), car.getWarningLights());
         for (Lights l : lights) {
             if (l.isLightsOn()) {
                 car.getBattery().setBatteryLevel(car.getBattery().getBatteryLevel() - 1);
