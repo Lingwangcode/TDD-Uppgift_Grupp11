@@ -94,9 +94,9 @@ class CarTest {
         car.getHighBeam().putLightsOn();
         car.stopEngine();
 
-        assertThat(car.getBackLights(), is(false));
-        assertThat(car.getHalfLights(), is(false));
-        assertThat(car.getHighBeam(), is(false));
+        assertThat(car.getBackLights().isLightsOn(), is(false));
+        assertThat(car.getHalfLights().isLightsOn(), is(false));
+        assertThat(car.getHighBeam().isLightsOn(), is(false));
 
     }
 
