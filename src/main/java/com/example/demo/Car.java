@@ -49,36 +49,19 @@ public class Car {
     public int getSpeed() {
         return speed;
     }
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
 
     public boolean getGasOn() {
         return gasOn;
     }
 
-    public void setSpeed(int speed) {
-        if (speed >= 0 && speed <= 180) {
-            this.speed = speed;
-        } else {
-            throw new IllegalArgumentException("Must be between 0 and 180!");
-        }
-    }
-
-    public void changeSpeed(int change) {
-        if (battery.getBatteryLevel() > 0) {
-            setSpeed(getSpeed() + change);
-        }
-    }
-
-
-
-    public void setGasOn() {
-        if (battery.getBatteryLevel() > 0) {
-            gasOn = true;
-        }
-
-    }
-
     public void setGasOff() {
         gasOn = false;
+    }
+    public void setGasOn() {
+        gasOn = true;
     }
 
     public boolean isBrakeOn() {
@@ -132,55 +115,13 @@ public class Car {
     public boolean getIsRunning() {
         return isRunning;
     }
-
-    public void startEngine() {
-        isRunning = true;
-        halfLights.putLightsOn();
-
+    public void setIsRunningTrue() {
+        this.isRunning = true;
+    }
+    public void setIsRunningFalse() {
+        this.isRunning = false;
     }
 
-    public void drive(int distance) {
-        if (!isRunning) {
-            startEngine();
-        }
-        if (battery.getBatteryLevel() > 0) {
-            battery.setBatteryLevel(battery.getBatteryLevel() - distance);
-            shine();
-        } else {
-            stopEngine();
-            throw new IllegalArgumentException("Car can't run on empty battery");
-        }
-    }
-    public void deadBattery() {
-        List<Lights> lights = List.of(halfLights, highBeam, backLights, brakeLights, warningLights);
-        for (Lights l : lights) {
-            l.putLightsOff();
-        }
-
-    }
-    public void shine() {
-        List<Lights> lights = List.of(halfLights, highBeam, backLights, brakeLights, warningLights);
-        for (Lights l : lights) {
-            if (l.isLightsOn()) {
-                battery.setBatteryLevel(battery.getBatteryLevel() - 1);
-            }
-        }
-
-    }
-
-    public void stopEngine() {
-        isRunning = false;
-        halfLights.putLightsOff();
-        highBeam.putLightsOff();
-        backLights.putLightsOff();
-    }
-
-    public void brake() {
-        setBrakeOn();
-        setGasOff();
-        setSpeed(0);
-        brakeLights.putLightsOn();
-    }
 
 
 }

@@ -7,18 +7,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CarTest {
+class CarHandlerTest {
 
     Car car;
+    CarHandler carHandler;
 
     @BeforeEach
     void setUp() {
         car = new Car();
+        carHandler = new CarHandler(car);
     }
 
     @Test
     public void notNullTest() {
-        assertNotNull(car);
+        assertNotNull(carHandler.getCar());
     }
 
 /*
@@ -36,59 +38,58 @@ class CarTest {
 
     @Test
     public void hasHalfLights() {
-        assertNotNull(car.getHalfLights());
+        assertNotNull(carHandler.getCar().getHalfLights());
     }
 
     @Test
     public void hasHighBeam() {
-        assertNotNull(car.getHighBeam());
+        assertNotNull(carHandler.getCar().getHighBeam());
     }
 
     @Test
     public void hasBackLights() {
-        assertNotNull(car.getBackLights());
+        assertNotNull(carHandler.getCar().getBackLights());
     }
 
     @Test
     public void hasGears() {
-        assertNotNull(car.getGear());
+        assertNotNull(carHandler.getCar().getGear());
     }
     @Test
     public void hasBattery() {
-        assertNotNull(car.getBattery());
+        assertNotNull(carHandler.getCar().getBattery());
     }
 
     @Test
     public void drivingUsesUpBattery(){
-        car.getBattery().setBatteryLevel(100);
-        int originalBatteryLevel=car.getBattery().getBatteryLevel();
-        car.drive(15);
-        assertTrue (originalBatteryLevel >= car.getBattery().getBatteryLevel());
+        carHandler.getCar().getBattery().setBatteryLevel(100);
+        int originalBatteryLevel = carHandler.getCar().getBattery().getBatteryLevel();
+        carHandler.drive(15);
+        assertTrue (originalBatteryLevel >= carHandler.getCar().getBattery().getBatteryLevel());
     }
     @Test
     public void lightsUsesUpBattery(){      //obs!! bara för halvljus än så länge!! ändra om vi refaktoriserar så logiken kommer ut ur Car
-        car.getBattery().setBatteryLevel(100);
-        int originalBatteryLevel=car.getBattery().getBatteryLevel();
-        car.getHalfLights().putLightsOn();
-        car.shine();
-        assertTrue (originalBatteryLevel > car.getBattery().getBatteryLevel());
+        carHandler.getCar().getBattery().setBatteryLevel(100);
+        int originalBatteryLevel = carHandler.getCar().getBattery().getBatteryLevel();
+        carHandler.getCar().getHalfLights().putLightsOn();
+        carHandler.shine();
+        assertTrue (originalBatteryLevel > carHandler.getCar().getBattery().getBatteryLevel());
     }
 
 
     @Test
     public void driveOnEmptyBatteryGivesException() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> car.drive(15));
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> carHandler.drive(15));
         assertEquals("Car can't run on empty battery", exception.getMessage());
     }
 
     @Test
     public void speedCantIncreaseOnEmptyBattery(){
-        car.setSpeed(100);
-        car.changeSpeed(10);
+        carHandler.getCar().setSpeed(100);
+        carHandler.changeSpeed(10);
 
-        assertEquals(car.getSpeed(),100);
-        assertNotEquals(car.getSpeed(),110);
-
+        assertEquals(carHandler.getCar().getSpeed(),100);
+        assertNotEquals(carHandler.getCar().getSpeed(),110);
     }
 
   /*  @Test
@@ -115,57 +116,57 @@ class CarTest {
 
     @Test
     public void isRunningFalse() {
-        assertFalse(car.getIsRunning());
+        assertFalse(carHandler.getCar().getIsRunning());
     }
 
     @Test
     public void isRunningTrue() {
-        car.startEngine();
-        assertTrue(car.getIsRunning());
+        carHandler.startEngine();
+        assertTrue(carHandler.getCar().getIsRunning());
     }
 
     @Test
     public void stopEngineLightsOut() {
         //put on lights to put them out by engine
-        car.getBackLights().putLightsOn();
-        car.getHalfLights().putLightsOn();
-        car.getHighBeam().putLightsOn();
-        car.stopEngine();
+        carHandler.getCar().getBackLights().putLightsOn();
+        carHandler.getCar().getHalfLights().putLightsOn();
+        carHandler.getCar().getHighBeam().putLightsOn();
+        carHandler.stopEngine();
 
         //asserts w hamcrest
-        assertThat(car.getBackLights().isLightsOn(), is(false));
-        assertThat(car.getHalfLights().isLightsOn(), is(false));
-        assertThat(car.getHighBeam().isLightsOn(), is(false));
+        assertThat(carHandler.getCar().getBackLights().isLightsOn(), is(false));
+        assertThat(carHandler.getCar().getHalfLights().isLightsOn(), is(false));
+        assertThat(carHandler.getCar().getHighBeam().isLightsOn(), is(false));
     }
 
     @Test
     public void hasWarningLights() {
-        assertNotNull(car.getWarningLights());
+        assertNotNull(carHandler.getCar().getWarningLights());
     }
 
     @Test
     public void gasOn50() {
-        car.getBattery().setBatteryLevel(50);
-        car.setGasOn();
-        assertTrue(car.getGasOn());
-        car.setSpeed(50);
-        assertEquals(50, car.getSpeed());
+        carHandler.getCar().getBattery().setBatteryLevel(50);
+        carHandler.getCar().setGasOn();
+        assertTrue(carHandler.getCar().getGasOn());
+        carHandler.setSpeed(50);
+        assertEquals(50, carHandler.getCar().getSpeed());
     }
 
     @Test
     public void gasOn181GivesException() {
         Car car = new Car();
         int invalidLevel = 181;
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> car.setSpeed(invalidLevel));
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> carHandler.setSpeed(invalidLevel));
         assertEquals("Must be between 0 and 180!", exception.getMessage());
     }
 
     @Test
     public void brake() {
-        car.brake();
-        assertEquals(car.getSpeed(), 0);
-        assertFalse(car.getGasOn());
-        assertTrue(car.getBrakeLights().isLightsOn());
+        carHandler.brake();
+        assertEquals(carHandler.getCar().getSpeed(), 0);
+        assertFalse(carHandler.getCar().getGasOn());
+        assertTrue(carHandler.getCar().getBrakeLights().isLightsOn());
     }
 
 }
