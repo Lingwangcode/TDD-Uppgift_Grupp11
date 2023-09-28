@@ -42,3 +42,4 @@ jobs:
         run: docker build -t test-docker-with-githubactions .
       - name: Push image
         run: docker push test-docker-with-githubactions
+        #not working with push
