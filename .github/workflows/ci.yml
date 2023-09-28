@@ -41,5 +41,5 @@ jobs:
       - name: Build image
         run: docker build -t test-docker-with-githubactions .
       - name: Push image
-        run: docker push test-docker-with-githubactions
+        run: docker push ghcr.io/Lingwangcode/test-docker-with-githubactions
         #not working with push
