@@ -36,7 +36,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          run: echo ${{ secrets.GRUPP_SECRET }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          username: ${{ github.actor }}
+          password: ${{ secrets.GRUPP_SECRET }}
 
       - name: Build image
         run: docker build -t ghcr.io/lingwangcode/tdd-uppgift_grupp11/test-docker-with-githubactions .
