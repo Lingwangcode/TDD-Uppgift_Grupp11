@@ -41,4 +41,4 @@ jobs:
       - name: Build image
         run: docker build -t test-docker-with-githubactions .
       - name: Push image
-        run: docker push ghcr.io/umm-a/singlaslant-github-actions:Development
+        run: docker push test-docker-with-githubactions
