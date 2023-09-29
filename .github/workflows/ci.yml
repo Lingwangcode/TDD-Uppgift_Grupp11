@@ -43,3 +43,11 @@ jobs:
         run: docker build -t ghcr.io/lingwangcode/tdd-uppgift_grupp11/test-docker-with-githubactions .
       - name: Push image
         run: docker push ghcr.io/lingwangcode/tdd-uppgift_grupp11/test-docker-with-githubactions:latest
+
+  fake-deployment:
+    runs-on: ubuntu-latest
+    needs: docker
+
+    steps:
+      - name: Fake Deployment
+        run: echo "ghcr.io/lingwangcode/tdd-uppgift_grupp11/test-docker-with-githubactions"
